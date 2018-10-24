@@ -18,7 +18,7 @@ class Board extends React.Component {
             value={this.props.squares[i]}
             onClickMe={() => { this.props.onClick(i) }} />;
     }
-
+    //jest test
     render() {
         return (
             <div>
