@@ -20,17 +20,21 @@ test('add 2-1 to equal 1', () => {
     expect(sum(2, -1)).toBe(1);
 });
 
-test('hhhhh', async () => {
+test('testing Primise', async () => {
     expect.assertions(1);
-    let pa = new Promise(r => { r(1); });
+
+    const mock = jest.fn();
+    mock.mockReturnValueOnce(1).mockReturnValueOnce('aa');
+    let pa = new Promise(r => { r(mock()); });
 
     let pb = pa.then(x =>{
         throw 'aa';
         return x += 1;
-    } ).catch(x => {});
+    } ).catch(x => mock());
 
     let oo = await pb;
     console.log(oo);
-    expect(oo).toBeUndefined();
+    expect(oo).toBe('aa');
 });
+
 
