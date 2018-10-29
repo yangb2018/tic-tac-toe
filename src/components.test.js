@@ -1,7 +1,7 @@
 import { Square, Board, calculateWinner, Game } from './components';
 import renderer from 'react-test-renderer';
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 test('should show square with correct content', () => {
     expect.assertions(2);
@@ -30,7 +30,6 @@ it('square should clickable', () => {
 it('should show Board with 9 squares', () => {
 
     const node = <Board squares={Array(9).fill(null)}></Board>;
-
     const button = shallow(node);
     var btnHtmls = button.find(Square);
     expect(btnHtmls.length).toBe(9);
@@ -56,8 +55,20 @@ it('test algorithm of calculateWinner', () => {
 
 
 it('shoud have Text X/O after click ', () => {
-     const com = shallow(<Game></Game>);
-     const htmlr = com.render();
-     var squareHtmls = htmlr.find('div.game-board button');
-     expect(squareHtmls.length).toBe(9);
+    const com = mount(<Game></Game>);
+    var squareHtmls = com.find('div.game-board button');
+    
+    expect(squareHtmls.length).toBe(9);
+
+    var firstcell = squareHtmls.first();
+    expect(firstcell.text()).toEqual('');
+    firstcell.simulate('click');
+    expect(firstcell.text()).toBe('X');
+
+
+
+    var thirdcell = squareHtmls.at(2);
+    expect(thirdcell.text()).toEqual('');
+    thirdcell.simulate('click');
+    expect(thirdcell.text()).toBe('O');
 });
