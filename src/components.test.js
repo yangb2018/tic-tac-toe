@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 
-test('should show square with correct content', () => {
+it('should show square with correct content', () => {
     expect.assertions(2);
     const tree = renderer.create(<Square value=""></Square>)
         .toJSON();
@@ -57,7 +57,7 @@ it('test algorithm of calculateWinner', () => {
 it('shoud have Text X/O after click ', () => {
     const com = mount(<Game></Game>);
     var squareHtmls = com.find('div.game-board button');
-    
+
     expect(squareHtmls.length).toBe(9);
 
     var firstcell = squareHtmls.first();
