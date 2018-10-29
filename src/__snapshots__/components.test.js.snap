@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should show Board 1`] = `
+exports[`should show Board with 9 squares 1`] = `
 <div>
   <div
     className="board-row"
@@ -53,7 +53,7 @@ exports[`should show Board 1`] = `
 </div>
 `;
 
-exports[`should show square 1`] = `
+exports[`should show square with correct content 1`] = `
 <button
   className="square"
 >
@@ -61,7 +61,7 @@ exports[`should show square 1`] = `
 </button>
 `;
 
-exports[`should show square 2`] = `
+exports[`should show square with correct content 2`] = `
 <button
   className="square"
 >

@@ -1,13 +1,5 @@
 const sum = require('./sum');
 
-beforeEach(() => {
-    console.log('starting test');
-});
-
-beforeAll(() => {
-    
-});
-
 test('add 1+2 to equal 3', () => {
     expect(sum(1, 2)).toBe(3);
 });

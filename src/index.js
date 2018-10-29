@@ -1,13 +1,7 @@
 import ReactDOM from 'react-dom';
 import './index.css';
-import Game from './components';
+import { Game } from './components';
 import React from 'react';
-
-
-
-
-
-
 
 // ========================================
 

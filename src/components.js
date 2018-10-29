@@ -11,6 +11,11 @@ export function Square(props) {
 
 
 export class Board extends React.Component {
+   
+   test()
+   {
+       console.log('testing man');
+   }
 
     renderSquare(i) {
         return <Square
@@ -44,7 +49,7 @@ export class Board extends React.Component {
 export function calculateWinner(squares) {
     const lines = [
         [0, 1, 2],
-        [3, 4, 5],
+        // [3, 4, 5],
         [6, 7, 8],
         [0, 3, 6],
         [1, 4, 7],
@@ -62,7 +67,7 @@ export function calculateWinner(squares) {
 }
 
 
-export default class Game extends React.Component {
+export class Game extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
