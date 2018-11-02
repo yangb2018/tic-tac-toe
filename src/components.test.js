@@ -28,7 +28,6 @@ it('square should clickable', () => {
 
 
 it('should show Board with 9 squares', () => {
-
     const node = <Board squares={Array(9).fill(null)}></Board>;
     const button = shallow(node);
     var btnHtmls = button.find(Square);
@@ -46,15 +45,17 @@ it('test algorithm of calculateWinner', () => {
     mockf.mockReturnValueOnce(['X', 'x', 'X'])
         .mockReturnValueOnce(['O', 'O', 'O'])
         .mockReturnValueOnce(['O', 'o', 'O'])
+        .mockReturnValueOnce([null,null,null,'X','X','X'])
         .mockReturnValue([]);
 
     expect(calculateWinner(mockf())).toBeNull();
     expect(calculateWinner(mockf())).toBe('O');
     expect(calculateWinner(mockf())).toBeNull();
+    expect(calculateWinner(mockf())).toBe('X');
 });
 
 
-it('shoud have Text X/O after click ', () => {
+it('shoud have Text X/O after square click ', () => {
     const com = mount(<Game></Game>);
     var squareHtmls = com.find('div.game-board button');
 
@@ -65,10 +66,35 @@ it('shoud have Text X/O after click ', () => {
     firstcell.simulate('click');
     expect(firstcell.text()).toBe('X');
 
+    var thirdcell = squareHtmls.at(2);
+    expect(thirdcell.text()).toEqual('');
+    thirdcell.simulate('click');
+    expect(thirdcell.text()).toBe('O');
+});
 
+
+it('addd history item after square click ', () => {
+    const com = mount(<Game></Game>);
+
+    var squareHtmls = com.find('div.game-board button');
+    var historyHtmls = com.find('div.game-info ol>li');
+
+    expect(squareHtmls.length).toBe(9);
+    expect(historyHtmls.length).toBe(1);
+
+    var firstcell = squareHtmls.first();
+    expect(firstcell.text()).toEqual('');
+    firstcell.simulate('click');
+    expect(firstcell.text()).toBe('X');
+
+    historyHtmls = com.find('div.game-info ol>li');
+    expect(historyHtmls.length).toBe(2);
 
     var thirdcell = squareHtmls.at(2);
     expect(thirdcell.text()).toEqual('');
     thirdcell.simulate('click');
     expect(thirdcell.text()).toBe('O');
+
+    historyHtmls = com.find('div.game-info ol>li');
+    expect(historyHtmls.length).toBe(3);
 });
